@@ -1402,6 +1402,7 @@ const ForensicDueDiligenceDashboard = ({ contractor }) => {
   const [sortDirection, setSortDirection] = useState("DESC")
   const [queryText, setQueryText] = useState("")
   const [peerComparisonView, setPeerComparisonView] = useState("Current")
+  const [showExportModal, setShowExportModal] = useState(false)
 
   // Sample forensic data
   const forensicData = {
