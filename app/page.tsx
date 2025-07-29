@@ -2290,8 +2290,21 @@ export default function QueryPage() {
   const handleSearch = (e) => {
     e.preventDefault()
     if (searchQuery.trim()) {
-      // Apply filters to search results
+      // Start with all search results
       let filteredResults = [...sampleSearchResults]
+
+      // Apply text search first
+      const searchTerm = searchQuery.toLowerCase().trim()
+      filteredResults = filteredResults.filter((contractor) => {
+        return (
+          contractor.name.toLowerCase().includes(searchTerm) ||
+          contractor.uei.toLowerCase().includes(searchTerm) ||
+          contractor.sector.toLowerCase().includes(searchTerm) ||
+          contractor.description.toLowerCase().includes(searchTerm) ||
+          contractor.location.toLowerCase().includes(searchTerm) ||
+          contractor.agencies.some(agency => agency.toLowerCase().includes(searchTerm))
+        )
+      })
 
       // Apply location filter
       if (activeFilters.location.length > 0) {
